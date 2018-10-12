@@ -1,3 +1,9 @@
+### revel
+
+test-results/
+tmp/
+routes/
+
 ### https://raw.github.com/github/gitignore//Global/macOS.gitignore
 
 # General
