@@ -1,10 +1,10 @@
 package builder
 
 import (
-	"gohome/app/data/repository"
-	"gohome/app/domain/translator"
-	"gohome/app/domain/usecase"
-	"gohome/app/presenter/controller"
+	"github.com/YutoMizutani/gohome/app/data/repository"
+	"github.com/YutoMizutani/gohome/app/domain/translator"
+	"github.com/YutoMizutani/gohome/app/domain/usecase"
+	"github.com/YutoMizutani/gohome/app/presenter/controller"
 )
 
 type AnimalBuilder struct {

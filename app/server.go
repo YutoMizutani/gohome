@@ -1,6 +1,6 @@
 package main
 
-import "gohome/app/infrastructure"
+import "github.com/YutoMizutani/gohome/app/infrastructure"
 
 func main() {
 	infrastructure.Router.Run()

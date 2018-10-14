@@ -1,14 +1,14 @@
 package translator
 
 import (
-	"gohome/app/data/entity"
-	Model "gohome/app/domain/model"
+	"github.com/YutoMizutani/gohome/app/data/entity"
+	"github.com/YutoMizutani/gohome/app/domain/model"
 )
 
 type AnimalTranslator struct {
 }
 
-func (translator *AnimalTranslator) Translate(entity *entity.AnimalEntity) (model Model.AnimalModel) {
-	model = Model.AnimalModel{Name: entity.Name}
-	return model
+func (translator *AnimalTranslator) Translate(animalEntity *entity.AnimalEntity) (animalModel model.AnimalModel) {
+	animalModel = model.AnimalModel{Name: animalEntity.Name}
+	return
 }

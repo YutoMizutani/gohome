@@ -1,9 +1,9 @@
 package usecase
 
 import (
-	"gohome/app/domain/model"
-	"gohome/app/domain/repository"
-	"gohome/app/domain/translator"
+	"github.com/YutoMizutani/gohome/app/domain/model"
+	"github.com/YutoMizutani/gohome/app/domain/repository"
+	"github.com/YutoMizutani/gohome/app/domain/translator"
 )
 
 type AnimalUsecase struct {

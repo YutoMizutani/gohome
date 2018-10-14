@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"gohome/app/domain/usecase"
+	"github.com/YutoMizutani/gohome/app/domain/usecase"
 )
 
 type AnimalController struct {
