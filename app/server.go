@@ -1,8 +1,15 @@
 package main
 
-import "github.com/YutoMizutani/gohome/app/infrastructure"
+import (
+	"log"
+
+	"github.com/YutoMizutani/gohome/app/infrastructure"
+)
 
 func main() {
-	router := infrastructure.Router
-	router.Run()
+	err := infrastructure.Router.Run()
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 }
