@@ -3,7 +3,7 @@ package infrastructure
 import (
 	"github.com/YutoMizutani/gohome/app/application/builder"
 
-	gin "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 var Router *gin.Engine
