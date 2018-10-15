@@ -15,6 +15,9 @@ branches:
     - master
     - develop
 
+notifications:
+  slack: $SLACK_KEY
+  email: false
 
 install:
   - make deps
