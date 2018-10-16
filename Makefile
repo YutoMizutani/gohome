@@ -12,6 +12,7 @@ BINARY_UNIX=$(BINARY_NAME)_unix
 ci: deps short-test build
 deploy: clean deps test build
 all: clean deps test build
+
 build:
 	$(GOBUILD) -o $(BINARY_NAME) -v $(MAIN_FILE)
 test:
