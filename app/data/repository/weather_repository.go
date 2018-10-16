@@ -13,6 +13,6 @@ type WeatherRepository struct {
 func (repository *WeatherRepository) Fetch() (err error) {
 	latitude := os.Getenv("WEATHER_LATITUDE")
 	longitude := os.Getenv("WEATHER_LONGITUDE")
-	_, err := repository.DataStore.Fetch(latitude, longitude)
-	return err
+	_, err = repository.DataStore.Fetch(latitude, longitude)
+	return
 }
