@@ -1,6 +1,8 @@
 package builder
 
 import (
+	"os"
+
 	"github.com/YutoMizutani/gohome/app/data/datastore"
 	"github.com/YutoMizutani/gohome/app/data/repository"
 	"github.com/YutoMizutani/gohome/app/domain/translator"
@@ -15,7 +17,7 @@ func (builder *WeatherBuilder) Build() *controller.WeatherController {
 	return &controller.WeatherController{
 		Usecase: usecase.WeatherUsecase{
 			Repository: &repository.WeatherRepository{
-				DataStore: datastore.DarkSkyDataStore{},
+				DataStore: datastore.DarkSkyDataStore{os.Getenv("DARK_SKY_API_KEY")},
 			},
 			Translator: translator.WeatherTranslator{},
 		},
