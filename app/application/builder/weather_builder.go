@@ -15,7 +15,7 @@ type WeatherBuilder struct {
 
 func (builder *WeatherBuilder) Build() *controller.WeatherController {
 	return &controller.WeatherController{
-		Usecase: usecase.WeatherUsecase{
+		Usecase: &usecase.WeatherUsecase{
 			Repository: &repository.WeatherRepository{
 				DataStore: datastore.DarkSkyDataStore{os.Getenv("DARK_SKY_API_KEY")},
 			},

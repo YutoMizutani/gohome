@@ -1,8 +1,6 @@
 package controller
 
-import (
-	"github.com/YutoMizutani/gohome/app/domain/usecase"
-)
+import "github.com/YutoMizutani/gohome/app/presenter/usecase"
 
 type WeatherController struct {
 	Usecase usecase.WeatherUsecase
