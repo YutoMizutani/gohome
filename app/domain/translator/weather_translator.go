@@ -11,7 +11,6 @@ type WeatherTranslator struct {
 func (translator *WeatherTranslator) Translate(weatherEntity *entity.WeatherEntity) (weatherModel *model.WeatherModel) {
 	weatherModel.Timezone = weatherEntity.Timezone
 	weatherModel.Summary = weatherEntity.Summary
-	weatherModel.SummaryAll = weatherEntity.SummaryAll
 	weatherModel.Temperature = weatherEntity.Temperature
 	weatherModel.TemperatureMax = weatherEntity.TemperatureMax
 	weatherModel.TemperatureMin = weatherEntity.TemperatureMin
