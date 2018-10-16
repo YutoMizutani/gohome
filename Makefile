@@ -9,6 +9,7 @@ MAIN_FILE=app/server.go
 BINARY_NAME=bin/server
 BINARY_UNIX=$(BINARY_NAME)_unix
 
+debug: deps run
 ci: deps short-test build
 deploy: clean deps test build
 all: clean deps test build
