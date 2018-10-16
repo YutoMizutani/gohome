@@ -23,7 +23,8 @@ func TestFetch(t *testing.T) {
 	apiKey := os.Getenv("DARK_SKY_API_KEY")
 	latitude := os.Getenv("WEATHER_LATITUDE")
 	longitude := os.Getenv("WEATHER_LONGITUDE")
-	if apiKey == "nil" || latitude == "nil" || longitude == "nil" {
+	empty := "nil"
+	if apiKey == empty || latitude == empty || longitude == empty {
 		log.Fatal("Error not defined required env keys")
 	}
 
