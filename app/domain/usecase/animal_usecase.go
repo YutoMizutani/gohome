@@ -11,8 +11,12 @@ type AnimalUsecase struct {
 	Translator translator.AnimalTranslator
 }
 
-func (usecase *AnimalUsecase) Fetch() (model model.AnimalModel, err error) {
+func (usecase *AnimalUsecase) Fetch() (animalModel *model.AnimalModel, err error) {
 	entity, err := usecase.Repository.Fetch()
-	model = usecase.Translator.Translate(&entity)
-	return
+	if err != nil {
+		return nil, err
+	}
+
+	animalModel = usecase.Translator.Translate(entity)
+	return animalModel, nil
 }
