@@ -11,10 +11,11 @@ var Router *gin.Engine
 func init() {
 	router := gin.Default()
 
-	animalBuilder := builder.AnimalBuilder{}
-	animalController := animalBuilder.Build()
+	animalController := new(builder.AnimalBuilder).Build()
+	weatherController := new(builder.WeatherBuilder).Build()
 
 	router.GET("/animal", func(c *gin.Context) { animalController.Fetch(c) })
+	router.GET("/forecast", func(c *gin.Context) { weatherController.Fetch(c) })
 
 	Router = router
 }

@@ -12,7 +12,7 @@ type AnimalBuilder struct {
 
 func (builder *AnimalBuilder) Build() *controller.AnimalController {
 	return &controller.AnimalController{
-		Usecase: usecase.AnimalUsecase{
+		Usecase: &usecase.AnimalUsecase{
 			Repository: &repository.AnimalRepository{},
 			Translator: translator.AnimalTranslator{},
 		},

@@ -8,7 +8,7 @@ import (
 type AnimalTranslator struct {
 }
 
-func (translator *AnimalTranslator) Translate(animalEntity *entity.AnimalEntity) (animalModel model.AnimalModel) {
-	animalModel = model.AnimalModel{Name: animalEntity.Name}
-	return
+func (translator *AnimalTranslator) Translate(animalEntity *entity.AnimalEntity) (animalModel *model.AnimalModel) {
+	animalModel = &model.AnimalModel{Name: animalEntity.Name}
+	return animalModel
 }
