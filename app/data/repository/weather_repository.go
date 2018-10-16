@@ -24,6 +24,7 @@ func (repository *WeatherRepository) Fetch() (weatherEntity *entity.WeatherEntit
 		return nil, err
 	}
 
+	weatherEntity = &entity.WeatherEntity{}
 	weatherEntity.Timezone = f.Timezone
 	weatherEntity.Summary = f.Currently.Summary
 	weatherEntity.Temperature = f.Currently.Temperature

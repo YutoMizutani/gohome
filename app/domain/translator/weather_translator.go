@@ -9,6 +9,7 @@ type WeatherTranslator struct {
 }
 
 func (translator *WeatherTranslator) Translate(weatherEntity *entity.WeatherEntity) (weatherModel *model.WeatherModel) {
+	weatherModel = &model.WeatherModel{}
 	weatherModel.Timezone = weatherEntity.Timezone
 	weatherModel.Summary = weatherEntity.Summary
 	weatherModel.Temperature = weatherEntity.Temperature
