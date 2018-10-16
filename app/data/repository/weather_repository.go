@@ -21,6 +21,12 @@ func (repository *WeatherRepository) Fetch() (weatherEntity *entity.WeatherEntit
 
 	weatherEntity.Timezone = f.Timezone
 	weatherEntity.Summary = f.Currently.Summary
+	length := len(f.Daily.Data)
+	summaryAll := make([]string, length)
+	for i, e := range f.Daily.Data {
+		summaryAll[i] = e.Summary
+	}
+	weatherEntity.SummaryAll = summaryAll
 	weatherEntity.Temperature = f.Currently.Temperature
 	weatherEntity.TemperatureMax = f.Currently.TemperatureMax
 	weatherEntity.TemperatureMin = f.Currently.TemperatureMin
