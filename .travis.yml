@@ -19,11 +19,8 @@ notifications:
   slack: $SLACK_KEY
   email: false
 
-install:
-  - make deps
-
 script:
-  - make all
+  - make ci
 
 matrix:
   allow_failures:
