@@ -7,10 +7,10 @@ type WeatherController struct {
 }
 
 func (controller *WeatherController) Fetch(c Context) {
-	Weathers, err := controller.Usecase.Fetch()
+	weather, err := controller.Usecase.Fetch()
 	if err != nil {
 		c.JSON(500, NewError(err))
 		return
 	}
-	c.JSON(200, Weathers)
+	c.JSON(200, weather)
 }
