@@ -29,7 +29,7 @@ func (dataStore *DarkSkyDataStore) Fetch(
 		return res, err
 	}
 
-	res, err = forecast.Get(apiKey, latitude, longitude, "now", forecast.SI, "ja")
+	res, err = forecast.Get(apiKey, latitude, longitude, "now", forecast.SI, forecast.English)
 	if res != nil && err == nil {
 		dataStore.cache.Set(cacheKey, res, cache.DefaultExpiration)
 	}
