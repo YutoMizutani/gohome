@@ -6,20 +6,14 @@ import (
 
 	"github.com/YutoMizutani/gohome/app/application/util"
 	"github.com/YutoMizutani/gohome/app/data/datastore"
-
-	"github.com/joho/godotenv"
 )
 
-func TestFetch(t *testing.T) {
+func TestDarkSkyDataStoreFetch(t *testing.T) {
 	if testing.Short() {
 		t.Skip("Skipping e2e tests in short mode.")
 	}
 
-	err := godotenv.Load("../../../.env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
+	util.PrepareEnv("../../../.env")
 	apiKey := util.Getenv("DARK_SKY_API_KEY")
 	latitude := util.Getenv("WEATHER_LATITUDE")
 	longitude := util.Getenv("WEATHER_LONGITUDE")
