@@ -6,12 +6,12 @@ import (
 	"github.com/YutoMizutani/gohome/app/domain/translator"
 )
 
-type WeatherUsecase struct {
+type WeatherUseCase struct {
 	Repository repository.WeatherRepository
 	Translator translator.WeatherTranslator
 }
 
-func (usecase *WeatherUsecase) Fetch() (model *model.WeatherModel, err error) {
+func (usecase *WeatherUseCase) Fetch() (model *model.WeatherModel, err error) {
 	entity, err := usecase.Repository.Fetch()
 	if err != nil {
 		return nil, err

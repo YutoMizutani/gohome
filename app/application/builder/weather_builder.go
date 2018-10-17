@@ -13,7 +13,7 @@ type WeatherBuilder struct {
 
 func (builder *WeatherBuilder) Build() *controller.WeatherController {
 	return &controller.WeatherController{
-		Usecase: &usecase.WeatherUsecase{
+		UseCase: &usecase.WeatherUseCase{
 			Repository: &repository.WeatherRepository{
 				DataStore: *datastore.NewDarkSky(),
 			},
