@@ -15,7 +15,7 @@ func (builder *WeatherBuilder) Build() *controller.WeatherController {
 	return &controller.WeatherController{
 		Usecase: &usecase.WeatherUsecase{
 			Repository: &repository.WeatherRepository{
-				DataStore: datastore.DarkSkyDataStore{},
+				DataStore: *datastore.NewDarkSky(),
 			},
 			Translator: translator.WeatherTranslator{},
 		},
