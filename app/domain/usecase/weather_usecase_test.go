@@ -12,8 +12,8 @@ import (
 type weatherRepositoryMock struct {
 }
 
-func (repository *weatherRepositoryMock) Fetch() (weatherEntity *entity.WeatherEntity, err error) {
-	weatherEntity = &entity.WeatherEntity{}
+func (repository *weatherRepositoryMock) Fetch() (*entity.WeatherEntity, error) {
+	weatherEntity := &entity.WeatherEntity{}
 	weatherEntity.Timezone = "Timezone"
 	weatherEntity.Summary = "Summary"
 	weatherEntity.Temperature = 0.0

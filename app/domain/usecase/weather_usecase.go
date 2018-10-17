@@ -11,12 +11,12 @@ type WeatherUseCase struct {
 	Translator translator.WeatherTranslator
 }
 
-func (usecase *WeatherUseCase) Fetch() (model *model.WeatherModel, err error) {
+func (usecase *WeatherUseCase) Fetch() (*model.WeatherModel, error) {
 	entity, err := usecase.Repository.Fetch()
 	if err != nil {
 		return nil, err
 	}
 
-	model = usecase.Translator.Translate(entity)
+	model := usecase.Translator.Translate(entity)
 	return model, nil
 }
