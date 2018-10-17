@@ -11,18 +11,15 @@ type DarkSkyDataStore struct {
 	cache *cache.Cache
 }
 
-func NewDarkSky() *DarkSkyDataStore {
-	dataStore := &DarkSkyDataStore{}
-	dataStore.cache = cache.New(10*time.Minute, 20*time.Minute)
-	return dataStore
-}
-
 func (dataStore *DarkSkyDataStore) Fetch(
 	apiKey string,
 	latitude string,
 	longitude string) (res *forecast.Forecast, err error) {
 
 	cacheKey := "DarkSkyDataStoreResponse"
+	if dataStore.cache == nil {
+		dataStore.cache = cache.New(10*time.Minute, 20*time.Minute)
+	}
 
 	if data, found := dataStore.cache.Get(cacheKey); found {
 		res = data.(*forecast.Forecast)
