@@ -1,7 +1,5 @@
 package model
 
-type WeatherModels []WeatherModel
-
 type WeatherModel struct {
 	Timezone       string
 	Summary        string

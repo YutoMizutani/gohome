@@ -31,6 +31,8 @@ deps:
 	# Secrets
 	$(GOGET) github.com/joho/godotenv
 	$(GOGET) github.com/gin-gonic/gin
+	# Cache
+	$(GOGET) github.com/patrickmn/go-cache
 	# Weather forecast
 	$(GOGET) github.com/mlbright/forecast/v2
 
