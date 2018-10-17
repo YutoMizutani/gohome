@@ -33,7 +33,7 @@ lint:
 	$(LINTRUN)
 deps:
 	# Lint
-	$(GOGET) -u github.com/golangci/golangci-lint/cmd/golangci-lint
+	$(GOGET) github.com/golangci/golangci-lint/cmd/golangci-lint
 	# Secrets
 	$(GOGET) github.com/joho/godotenv
 	$(GOGET) github.com/gin-gonic/gin

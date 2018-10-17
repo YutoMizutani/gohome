@@ -52,15 +52,8 @@ linters-settings:
     for-loops: false
 
 linters:
-  enable:
-    - megacheck
-    - govet
-  enable-all: false
+  enable-all: true
   disable:
     - maligned
     - prealloc
-  disable-all: false
-  presets:
-    - bugs
-    - unused
-  fast: false
+    - gosec
