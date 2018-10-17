@@ -29,8 +29,11 @@ func TestFetch(t *testing.T) {
 	}
 
 	darkSkyDataStore := new(datastore.DarkSkyDataStore)
-	_, err = darkSkyDataStore.Fetch(apiKey, latitude, longitude)
+	res, err := darkSkyDataStore.Fetch(apiKey, latitude, longitude)
 	if err != nil {
 		log.Fatal(err)
+	}
+	if res == nil {
+		log.Fatal("Error response returns nil")
 	}
 }
