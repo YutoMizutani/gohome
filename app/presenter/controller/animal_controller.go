@@ -3,11 +3,11 @@ package controller
 import "github.com/YutoMizutani/gohome/app/presenter/usecase"
 
 type AnimalController struct {
-	Usecase usecase.AnimalUsecase
+	UseCase usecase.AnimalUseCase
 }
 
 func (controller *AnimalController) Fetch(c Context) {
-	animals, err := controller.Usecase.Fetch()
+	animals, err := controller.UseCase.Fetch()
 	if err != nil {
 		c.JSON(500, NewError(err))
 		return
