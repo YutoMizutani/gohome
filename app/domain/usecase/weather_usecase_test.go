@@ -9,10 +9,10 @@ import (
 	"github.com/YutoMizutani/gohome/app/domain/usecase"
 )
 
-type repositoryMock struct {
+type weatherRepositoryMock struct {
 }
 
-func (repository *repositoryMock) Fetch() (weatherEntity *entity.WeatherEntity, err error) {
+func (repository *weatherRepositoryMock) Fetch() (weatherEntity *entity.WeatherEntity, err error) {
 	weatherEntity = &entity.WeatherEntity{}
 	weatherEntity.Timezone = "Timezone"
 	weatherEntity.Summary = "Summary"
@@ -24,7 +24,7 @@ func (repository *repositoryMock) Fetch() (weatherEntity *entity.WeatherEntity, 
 }
 
 func TestWeatherUseCaseFetch(t *testing.T) {
-	mock := new(repositoryMock)
+	mock := new(weatherRepositoryMock)
 
 	weatherUseCase := usecase.WeatherUseCase{}
 	weatherUseCase.Repository = mock
