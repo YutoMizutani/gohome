@@ -45,3 +45,5 @@ deps:
 # Cross compilation
 build-linux:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_UNIX) -v $(MAIN_FILE)
+docker-build:
+	docker run --rm -it -v "$(GOPATH)":/go -w /go/src/github.com/YutoMizutani/gohome/app golang:1.9 go build -o "$(BINARY_UNIX)" -v
