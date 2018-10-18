@@ -12,7 +12,7 @@ BINARY_NAME=bin/server
 BINARY_UNIX=$(BINARY_NAME)_unix
 
 debug: deps lint run
-ci: deps short-test build
+ci: deps test-short build
 deploy: clean deps lint test build
 all: clean deps lint test build
 
@@ -20,7 +20,7 @@ build:
 	$(GOBUILD) -o $(BINARY_NAME) -v $(MAIN_FILE)
 test:
 	$(GOTEST) -v ./...
-short-test:
+test-short:
 	$(GOTEST) -short -v ./...
 clean:
 	$(GOCLEAN)
@@ -45,3 +45,5 @@ deps:
 # Cross compilation
 build-linux:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_UNIX) -v $(MAIN_FILE)
+docker-build:
+	docker run --rm -it -v "$(GOPATH)":/go -w /go/src/github.com/YutoMizutani/gohome/app golang:1.9 go build -o "$(BINARY_UNIX)" -v
