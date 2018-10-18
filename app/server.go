@@ -8,8 +8,12 @@ import (
 )
 
 func main() {
-	util.PrepareEnv()
-	err := infrastructure.Router.Run()
+	err := util.PrepareEnv()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	err = infrastructure.Router.Run()
 	if err != nil {
 		log.Fatal(err)
 		return
