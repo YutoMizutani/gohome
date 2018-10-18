@@ -12,7 +12,7 @@ BINARY_NAME=bin/server
 BINARY_UNIX=$(BINARY_NAME)_unix
 
 debug: deps lint run
-ci: deps short-test build
+ci: deps test-short build
 deploy: clean deps lint test build
 all: clean deps lint test build
 
@@ -20,7 +20,7 @@ build:
 	$(GOBUILD) -o $(BINARY_NAME) -v $(MAIN_FILE)
 test:
 	$(GOTEST) -v ./...
-short-test:
+test-short:
 	$(GOTEST) -short -v ./...
 clean:
 	$(GOCLEAN)
