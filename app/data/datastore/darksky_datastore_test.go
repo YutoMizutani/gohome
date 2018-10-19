@@ -13,7 +13,10 @@ func TestDarkSkyDataStoreFetch(t *testing.T) {
 		t.Skip("Skipping e2e tests in short mode.")
 	}
 
-	util.PrepareEnv("../../../.env")
+	err := util.PrepareEnv("../../../.env")
+	if err != nil {
+		log.Fatal(err)
+	}
 	apiKey := util.Getenv("DARK_SKY_API_KEY")
 	latitude := util.Getenv("WEATHER_LATITUDE")
 	longitude := util.Getenv("WEATHER_LONGITUDE")
