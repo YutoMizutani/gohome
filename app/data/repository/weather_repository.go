@@ -18,7 +18,7 @@ func (repository *WeatherRepository) Fetch() (*entity.WeatherEntity, error) {
 	longitude := util.Getenv("WEATHER_LONGITUDE")
 	empty := "nil"
 	if apiKey == empty || latitude == empty || longitude == empty {
-		err := errors.New("Error env required values are empty")
+		err := errors.New("error env required values are empty")
 		return nil, err
 	}
 
