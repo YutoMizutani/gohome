@@ -5,14 +5,14 @@ import (
 
 	"github.com/YutoMizutani/gohome/app/application/util"
 	"github.com/YutoMizutani/gohome/app/data/datastore"
-	"github.com/YutoMizutani/gohome/app/data/entity"
+	"github.com/YutoMizutani/gohome/app/domain/entity"
 )
 
 type WeatherRepository struct {
 	DataStore datastore.DarkSkyDataStore
 }
 
-func (repository *WeatherRepository) Fetch() (*entity.WeatherEntity, error) {
+func (repository *WeatherRepository) Fetch() (*entity.Weather, error) {
 	apiKey := util.Getenv("DARK_SKY_API_KEY")
 	latitude := util.Getenv("WEATHER_LATITUDE")
 	longitude := util.Getenv("WEATHER_LONGITUDE")
@@ -27,7 +27,7 @@ func (repository *WeatherRepository) Fetch() (*entity.WeatherEntity, error) {
 		return nil, err
 	}
 
-	weatherEntity := &entity.WeatherEntity{}
+	weatherEntity := &entity.Weather{}
 	weatherEntity.Timezone = f.Timezone
 	weatherEntity.Summary = f.Currently.Summary
 	weatherEntity.Temperature = f.Currently.Temperature

@@ -1,6 +1,6 @@
-package model
+package entity
 
-type WeatherModel struct {
+type Weather struct {
 	Timezone       string  `json:"timezone"`
 	Summary        string  `json:"summary"`
 	Temperature    float64 `json:"temperature"`

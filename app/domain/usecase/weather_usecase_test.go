@@ -4,16 +4,15 @@ import (
 	"log"
 	"testing"
 
-	"github.com/YutoMizutani/gohome/app/data/entity"
-	"github.com/YutoMizutani/gohome/app/domain/translator"
+	"github.com/YutoMizutani/gohome/app/domain/entity"
 	"github.com/YutoMizutani/gohome/app/domain/usecase"
 )
 
 type weatherRepositoryMock struct {
 }
 
-func (repository *weatherRepositoryMock) Fetch() (*entity.WeatherEntity, error) {
-	weatherEntity := &entity.WeatherEntity{}
+func (repository *weatherRepositoryMock) Fetch() (*entity.Weather, error) {
+	weatherEntity := &entity.Weather{}
 	weatherEntity.Timezone = "Timezone"
 	weatherEntity.Summary = "Summary"
 	weatherEntity.Temperature = 0.0
@@ -28,29 +27,28 @@ func TestWeatherUseCaseFetch(t *testing.T) {
 
 	weatherUseCase := usecase.WeatherUseCase{}
 	weatherUseCase.Repository = mock
-	weatherUseCase.Translator = translator.WeatherTranslator{}
 
-	model, err := weatherUseCase.Fetch()
+	entity, err := weatherUseCase.Fetch()
 	if err != nil {
 		log.Fatal("Error entity returns nil")
 	}
 
-	if model.Timezone != "Timezone" {
+	if entity.Timezone != "Timezone" {
 		log.Fatal("Error Timezone value")
 	}
-	if model.Summary != "Summary" {
+	if entity.Summary != "Summary" {
 		log.Fatal("Error Summary value")
 	}
-	if model.Temperature != 0.0 {
+	if entity.Temperature != 0.0 {
 		log.Fatal("Error Temperature value")
 	}
-	if model.TemperatureMax != 0.0 {
+	if entity.TemperatureMax != 0.0 {
 		log.Fatal("Error TemperatureMax value")
 	}
-	if model.TemperatureMin != 0.0 {
+	if entity.TemperatureMin != 0.0 {
 		log.Fatal("Error TemperatureMin value")
 	}
-	if model.Humidity != 0.0 {
+	if entity.Humidity != 0.0 {
 		log.Fatal("Error Humidity value")
 	}
 }
