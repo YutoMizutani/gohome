@@ -1,11 +1,14 @@
 package controller
 
-import "github.com/YutoMizutani/gohome/app/domain/entity"
+import (
+	"github.com/YutoMizutani/gohome/app/domain/entity"
+	"github.com/gin-gonic/gin"
+)
 
 type MenuController struct {
 }
 
-func (controller *MenuController) Get(c Context) {
+func (controller *MenuController) Get(c *gin.Context) {
 	entities := entity.Menus{}
 
 	// Life
