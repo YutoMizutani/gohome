@@ -31,7 +31,19 @@ func (dataStore *TodoDataStore) Migrate() error {
 	return nil
 }
 
-func (dataStore *TodoDataStore) FindAll() (*entity.TodoList, error) {
+func (dataStore *TodoDataStore) Create(entity *entity.Todo) error {
+	db, err := dataStore.open()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	db.NewRecord(&entity)
+	db.Create(&entity)
+	return nil
+}
+
+func (dataStore *TodoDataStore) ReadAll() (*entity.TodoList, error) {
 	db, err := dataStore.open()
 	if err != nil {
 		return nil, err
@@ -43,14 +55,38 @@ func (dataStore *TodoDataStore) FindAll() (*entity.TodoList, error) {
 	return &list, nil
 }
 
-func (dataStore *TodoDataStore) Create(entity *entity.Todo) error {
+func (dataStore *TodoDataStore) Read(id uint) (*entity.Todo, error) {
+	db, err := dataStore.open()
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	var todo entity.Todo
+	db.First(&todo, &id)
+	return &todo, nil
+}
+
+func (dataStore *TodoDataStore) Update(entity *entity.Todo) (*entity.Todo, error) {
+	db, err := dataStore.open()
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	db.Save(&entity)
+	db.First(&entity, &entity.ID)
+	return entity, nil
+}
+
+func (dataStore *TodoDataStore) Delete(id uint) error {
 	db, err := dataStore.open()
 	if err != nil {
 		return err
 	}
 	defer db.Close()
 
-	db.NewRecord(&entity)
-	db.Create(&entity)
+	var entity entity.Todo
+	db.First(&entity, &id).Delete(&entity)
 	return nil
 }

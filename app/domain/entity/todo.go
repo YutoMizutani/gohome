@@ -6,10 +6,10 @@ type TodoList []Todo
 
 type Todo struct {
 	gorm.Model
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	Tags        []TodoTag `json:"tags"`
-	IsFinished  bool      `json:"is_finished"`
+	Title       string     `json:"title"`
+	Description string     `json:"description"`
+	Tags        []*TodoTag `json:"tags" gorm:"default:[]"`
+	IsDone      bool       `json:"is_done"`
 }
 
 type TodoTag struct {

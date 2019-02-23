@@ -9,13 +9,22 @@ type TodoUseCase struct {
 	Repository repository.TodoRepository
 }
 
-func (usecase *TodoUseCase) Get() (*entity.TodoList, error) {
-	entities, err := usecase.Repository.Get()
+func (usecase *TodoUseCase) GetAll() (*entity.TodoList, error) {
+	entities, err := usecase.Repository.GetAll()
 	if err != nil {
 		return nil, err
 	}
 
 	return entities, nil
+}
+
+func (usecase *TodoUseCase) Get(id uint) (*entity.Todo, error) {
+	entity, err := usecase.Repository.Get(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return entity, nil
 }
 
 func (usecase *TodoUseCase) Add(entity *entity.Todo) error {
@@ -25,4 +34,28 @@ func (usecase *TodoUseCase) Add(entity *entity.Todo) error {
 	}
 
 	return nil
+}
+
+func (usecase *TodoUseCase) Update(entity *entity.Todo) (*entity.Todo, error) {
+	entity, err := usecase.Repository.Update(entity)
+	if err != nil {
+		return nil, err
+	}
+
+	return entity, nil
+}
+
+func (usecase *TodoUseCase) UpdateDoneState(id uint, isDone bool) (*entity.Todo, error) {
+	var entity *entity.Todo
+	entity, err := usecase.Repository.Get(id)
+	if err != nil {
+		return nil, err
+	}
+	entity.IsDone = isDone
+	entity, err = usecase.Repository.Update(entity)
+	if err != nil {
+		return nil, err
+	}
+
+	return entity, nil
 }
