@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"github.com/YutoMizutani/gohome/app/domain/entity"
+	"github.com/YutoMizutani/gohome/app/domain/entity/primitive"
 	"github.com/YutoMizutani/gohome/app/domain/repository"
 )
 
@@ -18,7 +19,7 @@ func (usecase *TodoUseCase) GetAll() (*entity.TodoList, error) {
 	return entities, nil
 }
 
-func (usecase *TodoUseCase) Get(id uint) (*entity.Todo, error) {
+func (usecase *TodoUseCase) Get(id *primitive.GormModelID) (*entity.Todo, error) {
 	entity, err := usecase.Repository.Get(id)
 	if err != nil {
 		return nil, err
@@ -45,7 +46,7 @@ func (usecase *TodoUseCase) Update(entity *entity.Todo) (*entity.Todo, error) {
 	return entity, nil
 }
 
-func (usecase *TodoUseCase) UpdateDoneState(id uint, isDone bool) (*entity.Todo, error) {
+func (usecase *TodoUseCase) UpdateDoneState(id *primitive.GormModelID, isDone bool) (*entity.Todo, error) {
 	var entity *entity.Todo
 	entity, err := usecase.Repository.Get(id)
 	if err != nil {
@@ -60,7 +61,7 @@ func (usecase *TodoUseCase) UpdateDoneState(id uint, isDone bool) (*entity.Todo,
 	return entity, nil
 }
 
-func (usecase *TodoUseCase) Delete(id uint) error {
+func (usecase *TodoUseCase) Delete(id *primitive.GormModelID) error {
 	err := usecase.Repository.Delete(id)
 	return err
 }

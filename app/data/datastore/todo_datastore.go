@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/YutoMizutani/gohome/app/domain/entity"
+	"github.com/YutoMizutani/gohome/app/domain/entity/primitive"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
@@ -55,7 +56,7 @@ func (dataStore *TodoDataStore) ReadAll() (*entity.TodoList, error) {
 	return &list, nil
 }
 
-func (dataStore *TodoDataStore) Read(id uint) (*entity.Todo, error) {
+func (dataStore *TodoDataStore) Read(id *primitive.GormModelID) (*entity.Todo, error) {
 	db, err := dataStore.open()
 	if err != nil {
 		return nil, err
@@ -63,7 +64,7 @@ func (dataStore *TodoDataStore) Read(id uint) (*entity.Todo, error) {
 	defer db.Close()
 
 	var todo entity.Todo
-	db.First(&todo, &id)
+	db.First(&todo, &id.Value)
 	return &todo, nil
 }
 
@@ -79,7 +80,7 @@ func (dataStore *TodoDataStore) Update(entity *entity.Todo) (*entity.Todo, error
 	return entity, nil
 }
 
-func (dataStore *TodoDataStore) Delete(id uint) error {
+func (dataStore *TodoDataStore) Delete(id *primitive.GormModelID) error {
 	db, err := dataStore.open()
 	if err != nil {
 		return err
@@ -87,6 +88,6 @@ func (dataStore *TodoDataStore) Delete(id uint) error {
 	defer db.Close()
 
 	var entity entity.Todo
-	db.First(&entity, &id).Delete(&entity)
+	db.First(&entity, &id.Value).Delete(&entity)
 	return nil
 }

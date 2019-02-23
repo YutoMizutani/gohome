@@ -3,6 +3,7 @@ package repository
 import (
 	"github.com/YutoMizutani/gohome/app/data/datastore"
 	"github.com/YutoMizutani/gohome/app/domain/entity"
+	"github.com/YutoMizutani/gohome/app/domain/entity/primitive"
 )
 
 type TodoRepository struct {
@@ -17,7 +18,7 @@ func (repository *TodoRepository) GetAll() (*entity.TodoList, error) {
 	return repository.DataStore.ReadAll()
 }
 
-func (repository *TodoRepository) Get(id uint) (*entity.Todo, error) {
+func (repository *TodoRepository) Get(id *primitive.GormModelID) (*entity.Todo, error) {
 	return repository.DataStore.Read(id)
 }
 
@@ -25,6 +26,6 @@ func (repository *TodoRepository) Update(entity *entity.Todo) (*entity.Todo, err
 	return repository.DataStore.Update(entity)
 }
 
-func (repository *TodoRepository) Delete(id uint) error {
+func (repository *TodoRepository) Delete(id *primitive.GormModelID) error {
 	return repository.DataStore.Delete(id)
 }
