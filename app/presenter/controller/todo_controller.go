@@ -50,7 +50,7 @@ func (controller *TodoController) Create(c *gin.Context) {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, todo)
+	c.JSON(201, todo)
 }
 
 func (controller *TodoController) Update(c *gin.Context) {
