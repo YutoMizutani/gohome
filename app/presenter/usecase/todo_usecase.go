@@ -8,4 +8,5 @@ type TodoUseCase interface {
 	Add(entity *entity.Todo) error
 	Update(entity *entity.Todo) (*entity.Todo, error)
 	UpdateDoneState(id uint, isDone bool) (*entity.Todo, error)
+	Delete(id uint) error
 }

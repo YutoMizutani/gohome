@@ -59,3 +59,8 @@ func (usecase *TodoUseCase) UpdateDoneState(id uint, isDone bool) (*entity.Todo,
 
 	return entity, nil
 }
+
+func (usecase *TodoUseCase) Delete(id uint) error {
+	err := usecase.Repository.Delete(id)
+	return err
+}

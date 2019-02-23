@@ -84,3 +84,20 @@ func (controller *TodoController) UpdateDone(c *gin.Context, isDone bool) {
 	}
 	c.JSON(200, todo)
 }
+
+func (controller *TodoController) Delete(c *gin.Context) {
+	idString := c.Param("id")
+	id64, err := strconv.ParseUint(idString, 10, 64)
+	if err != nil {
+		c.Status(404)
+		return
+	}
+	id := uint(id64)
+
+	err = controller.UseCase.Delete(id)
+	if err != nil {
+		c.JSON(500, err)
+		return
+	}
+	c.Status(200)
+}
