@@ -5,6 +5,7 @@ run:
   tests: true
   skip-files:
     - "app/infrastructure/router.go"
+    - "app/data/datastore/todo_datastore.go"
 
 output:
   format: colored-line-number

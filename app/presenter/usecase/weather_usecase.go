@@ -1,7 +1,7 @@
 package usecase
 
-import "github.com/YutoMizutani/gohome/app/domain/model"
+import "github.com/YutoMizutani/gohome/app/domain/entity"
 
 type WeatherUseCase interface {
-	Fetch() (*model.WeatherModel, error)
+	Fetch() (*entity.Weather, error)
 }

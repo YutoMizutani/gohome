@@ -39,6 +39,9 @@ deps:
 	$(GOGET) github.com/gin-gonic/gin
 	# Cache
 	$(GOGET) github.com/patrickmn/go-cache
+	# ORM
+	$(GOGET) github.com/jinzhu/gorm
+	$(GOGET) github.com/jinzhu/gorm/dialects/sqlite
 	# Weather forecast
 	$(GOGET) github.com/mlbright/forecast/v2
 

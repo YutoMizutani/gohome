@@ -1,7 +1,7 @@
 package repository
 
-import "github.com/YutoMizutani/gohome/app/data/entity"
+import "github.com/YutoMizutani/gohome/app/domain/entity"
 
 type WeatherRepository interface {
-	Fetch() (*entity.WeatherEntity, error)
+	Fetch() (*entity.Weather, error)
 }

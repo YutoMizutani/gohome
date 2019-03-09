@@ -1,8 +1,8 @@
-package model
+package entity
 
-type MenuModels []MenuModel
+type Menus []Menu
 
-type MenuModel struct {
+type Menu struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Routes      Routes `json:"routes"`

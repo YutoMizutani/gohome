@@ -1,7 +1,7 @@
 package usecase
 
-import "github.com/YutoMizutani/gohome/app/domain/model"
+import "github.com/YutoMizutani/gohome/app/domain/entity"
 
 type AnimalUseCase interface {
-	Fetch() (*model.AnimalModel, error)
+	Fetch() (*entity.Animal, error)
 }
