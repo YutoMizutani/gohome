@@ -26,7 +26,7 @@ func (controller *TodoController) GetAll(c *gin.Context) {
 
 func (controller *TodoController) Get(c *gin.Context) {
 	id := primitive.NewGormModelID(c.Param("id"))
-	if id != nil {
+	if id == nil {
 		c.Status(404)
 		return
 	}
@@ -83,12 +83,12 @@ func (controller *TodoController) Update(c *gin.Context) {
 
 func (controller *TodoController) UpdateDone(c *gin.Context) {
 	id := primitive.NewGormModelID(c.Param("id"))
-	if id != nil {
+	if id == nil {
 		c.Status(404)
 		return
 	}
 
-	isDone, err := strconv.ParseBool(c.Param("is_done"))
+	isDone, err := strconv.ParseBool(c.PostForm("is_done"))
 	if err != nil {
 		c.JSON(500, err)
 		return
@@ -103,7 +103,7 @@ func (controller *TodoController) UpdateDone(c *gin.Context) {
 
 func (controller *TodoController) Delete(c *gin.Context) {
 	id := primitive.NewGormModelID(c.Param("id"))
-	if id != nil {
+	if id == nil {
 		c.Status(404)
 		return
 	}
