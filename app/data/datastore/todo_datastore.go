@@ -64,7 +64,7 @@ func (dataStore *TodoDataStore) Read(id *primitive.GormModelID) (*entity.Todo, e
 	defer db.Close()
 
 	var todo entity.Todo
-	db.First(&todo, &id.Value)
+	db.First(&todo, id.Value)
 	return &todo, nil
 }
 
@@ -76,7 +76,7 @@ func (dataStore *TodoDataStore) Update(entity *entity.Todo) (*entity.Todo, error
 	defer db.Close()
 
 	db.Save(&entity)
-	db.First(&entity, &entity.ID)
+	db.First(&entity, entity.ID)
 	return entity, nil
 }
 

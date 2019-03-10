@@ -62,6 +62,12 @@ func (controller *TodoController) Create(c *gin.Context) {
 
 func (controller *TodoController) Update(c *gin.Context) {
 	todo := entity.Todo{}
+	id := primitive.NewGormModelID(c.Param("id"))
+	if id == nil {
+		c.Status(404)
+		return
+	}
+	todo.ID = id.Value
 	todo.Title = c.PostForm("title")
 	todo.Description = c.PostForm("description")
 	tagsString := c.PostFormArray("tags")
