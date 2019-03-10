@@ -88,6 +88,6 @@ func (dataStore *TodoDataStore) Delete(id *primitive.GormModelID) error {
 	defer db.Close()
 
 	var entity entity.Todo
-	db.First(&entity, &id.Value).Delete(&entity)
+	db.First(&entity, id.Value).Delete(&entity)
 	return nil
 }
