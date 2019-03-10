@@ -26,8 +26,7 @@ func init() {
 	router.GET("/todos/:id", func(c *gin.Context) { todoController.Get(c) })
 	router.PUT("/todos/:id", func(c *gin.Context) { todoController.Update(c) })
 	router.DELETE("/todos/:id", func(c *gin.Context) { todoController.Delete(c) })
-	router.PUT("/todos/:id/done", func(c *gin.Context) { todoController.UpdateDone(c, true) })
-	router.DELETE("/todos/:id/done", func(c *gin.Context) { todoController.UpdateDone(c, false) })
+	router.PUT("/todo/done/:id", func(c *gin.Context) { todoController.UpdateDone(c) })
 
 	Router = router
 }

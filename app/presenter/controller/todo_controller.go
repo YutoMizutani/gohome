@@ -1,6 +1,9 @@
 package controller
 
 import (
+	"fmt"
+	"strconv"
+
 	"github.com/YutoMizutani/gohome/app/domain/entity"
 	"github.com/YutoMizutani/gohome/app/domain/entity/primitive"
 	"github.com/YutoMizutani/gohome/app/presenter/usecase"
@@ -17,6 +20,7 @@ func (controller *TodoController) GetAll(c *gin.Context) {
 		c.JSON(500, err)
 		return
 	}
+	fmt.Println(*entities)
 	c.JSON(200, entities)
 }
 
@@ -36,13 +40,19 @@ func (controller *TodoController) Get(c *gin.Context) {
 }
 
 func (controller *TodoController) Create(c *gin.Context) {
-	var todo *entity.Todo
-	err := c.BindJSON(todo)
-	if err != nil {
-		c.JSON(500, err)
-		return
+	todo := entity.Todo{}
+	todo.Title = c.PostForm("title")
+	todo.Description = c.PostForm("description")
+	tagsString := c.PostFormArray("tags")
+	r := make([]*entity.TodoTag, len(tagsString))
+	for i, e := range tagsString {
+		r[i].Tag = e
 	}
-	err = controller.UseCase.Add(todo)
+	todo.Tags = r
+	todo.IsDone, _ = strconv.ParseBool(c.PostForm("is_done"))
+	fmt.Println(todo)
+
+	err := controller.UseCase.Add(&todo)
 	if err != nil {
 		c.JSON(500, err)
 		return
@@ -51,27 +61,38 @@ func (controller *TodoController) Create(c *gin.Context) {
 }
 
 func (controller *TodoController) Update(c *gin.Context) {
-	var todo *entity.Todo
-	err := c.BindJSON(todo)
+	todo := entity.Todo{}
+	todo.Title = c.PostForm("title")
+	todo.Description = c.PostForm("description")
+	tagsString := c.PostFormArray("tags")
+	r := make([]*entity.TodoTag, len(tagsString))
+	for i, e := range tagsString {
+		r[i].Tag = e
+	}
+	todo.Tags = r
+	todo.IsDone, _ = strconv.ParseBool(c.PostForm("is_done"))
+	fmt.Println(todo)
+
+	result, err := controller.UseCase.Update(&todo)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	todo, err = controller.UseCase.Update(todo)
-	if err != nil {
-		c.JSON(500, err)
-		return
-	}
-	c.JSON(200, todo)
+	c.JSON(200, result)
 }
 
-func (controller *TodoController) UpdateDone(c *gin.Context, isDone bool) {
+func (controller *TodoController) UpdateDone(c *gin.Context) {
 	id := primitive.NewGormModelID(c.Param("id"))
 	if id != nil {
 		c.Status(404)
 		return
 	}
 
+	isDone, err := strconv.ParseBool(c.Param("is_done"))
+	if err != nil {
+		c.JSON(500, err)
+		return
+	}
 	todo, err := controller.UseCase.UpdateDoneState(id, isDone)
 	if err != nil {
 		c.JSON(500, err)
