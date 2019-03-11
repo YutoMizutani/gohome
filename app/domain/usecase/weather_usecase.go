@@ -1,22 +1,19 @@
 package usecase
 
 import (
-	"github.com/YutoMizutani/gohome/app/domain/model"
+	"github.com/YutoMizutani/gohome/app/domain/entity"
 	"github.com/YutoMizutani/gohome/app/domain/repository"
-	"github.com/YutoMizutani/gohome/app/domain/translator"
 )
 
 type WeatherUseCase struct {
 	Repository repository.WeatherRepository
-	Translator translator.WeatherTranslator
 }
 
-func (usecase *WeatherUseCase) Fetch() (*model.WeatherModel, error) {
+func (usecase *WeatherUseCase) Fetch() (*entity.Weather, error) {
 	entity, err := usecase.Repository.Fetch()
 	if err != nil {
 		return nil, err
 	}
 
-	model := usecase.Translator.Translate(entity)
-	return model, nil
+	return entity, nil
 }

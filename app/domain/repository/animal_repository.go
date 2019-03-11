@@ -1,7 +1,7 @@
 package repository
 
-import "github.com/YutoMizutani/gohome/app/data/entity"
+import "github.com/YutoMizutani/gohome/app/domain/entity"
 
 type AnimalRepository interface {
-	Fetch() (*entity.AnimalEntity, error)
+	Fetch() (*entity.Animal, error)
 }
